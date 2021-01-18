@@ -15,3 +15,6 @@ RUN gem update --system && \
     bundle install
 
 COPY . /app
+
+
+EXPOSE 3000

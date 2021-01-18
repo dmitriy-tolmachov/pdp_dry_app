@@ -33,6 +33,11 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+
+gem 'multi_json'
+gem 'responders', '~> 2.0'
+
+
 # Trailbalzer
 gem 'reform-rails', git: 'git://github.com/dmitrylomako-mobidev/reform-rails.git'
 gem 'roar'
