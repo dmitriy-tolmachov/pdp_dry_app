@@ -9,7 +9,6 @@ services:
     ports:
       - "5432:5432"
 
-
   web:
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
@@ -21,10 +20,22 @@ services:
     depends_on:
       - db
 
-  frontend:
-        build:
-            context: ./frontend
-        volumes:
-            - ./frontend:/app
-        ports:
-        - 80
+  caddy:
+    image: abiosoft/caddy:0.10.14
+    volumes:
+     - ./Caddyfile:/etc/Caddyfile
+     - ./.caddy:/root/.caddy
+    ports:
+     - 80:80
+     - 443:443
+    environment:
+     - ACME_AGREE=true
+
+
+  front:
+    build:
+        context: ./front
+    volumes:
+        - ./front:/app
+    ports:
+    - 80

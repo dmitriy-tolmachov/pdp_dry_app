@@ -1,6 +1,6 @@
 # front
 
-> front for pdp
+> Front for rails
 
 ## Build Setup
 

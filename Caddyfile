@@ -1,0 +1,13 @@
+localhost:80 {
+
+  proxy /api pdp_dry_app_api_1:3000 {
+    transparent
+  }
+
+  proxy / pdp_dry_app_front_1:80 {
+    transparent
+  }
+
+  log stdout
+  errors stdout
+}
