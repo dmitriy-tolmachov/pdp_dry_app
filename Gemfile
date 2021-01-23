@@ -47,6 +47,11 @@ gem 'trailblazer', '~> 2.1.0.rc1'
 gem 'trailblazer-rails'
 gem 'trailblazer-operation'
 
+gem 'pry-rails'
+gem 'pry-byebug'
+
+gem 'wisper', '2.0.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 

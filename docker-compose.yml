@@ -1,44 +1,46 @@
 version: '3'
 services:
-#
-#  db:
-#    image: postgres:latest
-#    volumes:
-#      - ./tmp/db:/var/lib/postgresql/data
-#    env_file: .env
-#    environment:
-#      POSTGRES_PASSWORD: postgres
-#      POSTGRES_USER: postgres
-#    ports:
-#      - "5432:5432"
-#
-#  web:
-#    build: .
-#    command: bundle exec rails s -p 3000 -b '0.0.0.0'
-#    volumes:
-#      - .:/app
-#    ports:
-#      - "3000:3000"
-#    env_file: .env
-#    depends_on:
-#      - db
 
-  caddy:
-    image: abiosoft/caddy:0.10.14
+  db:
+    image: postgres:latest
     volumes:
-     - ./Caddyfile:/etc/Caddyfile
-     - ./.caddy:/root/.caddy
-    ports:
-     - 80:80
-     - 443:443
+      - ./tmp/db:/var/lib/postgresql/data
+    env_file: .env
     environment:
-     - ACME_AGREE=true
-
-
-  front:
-    build:
-        context: ./front
-    volumes:
-        - ./front:/app
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
     ports:
-    - 80
+      - "5432:5432"
+
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    env_file: .env
+    depends_on:
+      - db
+    stdin_open: true
+    tty: true
+
+#  caddy:
+#    image: abiosoft/caddy:0.10.14
+#    volumes:
+#     - ./Caddyfile:/etc/Caddyfile
+#     - ./.caddy:/root/.caddy
+#    ports:
+#     - 80:80
+#     - 443:443
+#    environment:
+#     - ACME_AGREE=true
+
+
+#  front:
+#    build:
+#        context: ./front
+#    volumes:
+#        - ./front:/app
+#    ports:
+#    - 8080:8080
